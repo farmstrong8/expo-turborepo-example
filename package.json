@@ -2,10 +2,26 @@
     "name": "expo-turborepo-example",
     "version": "1.0.0",
     "description": "a repo setup using expo and turborepo",
-    "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "lint": "turbo lint"
     },
-    "author": "",
-    "license": "ISC"
+    "author": "farmstrong8",
+    "license": "ISC",
+    "packageManager": "npm@9.6.5",
+    "workspaces": [
+        "packages/*",
+        "apps/*"
+    ],
+    "dependencies": {
+        "expo": "~48.0.15",
+        "expo-status-bar": "~1.4.4",
+        "react": "18.2.0",
+        "react-native": "0.71.7"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.20.0",
+        "@types/react": "~18.0.14",
+        "typescript": "^4.9.4",
+        "turbo": "^1.9.4"
+    }
 }
