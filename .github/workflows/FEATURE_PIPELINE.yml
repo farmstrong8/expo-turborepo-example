@@ -13,7 +13,7 @@ jobs:
 
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Setup Node
               uses: actions/setup-node@v2
@@ -26,6 +26,9 @@ jobs:
             - name: Install turbo
               run: npm install turbo --global
 
-            - name: Publish update
-              id: publish-update
-              run: turbo run publish-update --filter=//...\[origin/main...$(git branch --show-current)\]
+            - name: Log
+              run: ls -a
+
+            # - name: Publish update
+            #   id: publish-update
+            #   run: turbo run publish-update --filter=//...\[origin/main...$(git branch --show-current)\]
