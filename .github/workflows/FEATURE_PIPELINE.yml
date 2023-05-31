@@ -15,7 +15,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v3
               with:
-                  fetch-depth: 2
+                  fetch-depth: 0
 
             - name: Setup Node
               uses: actions/setup-node@v2
@@ -33,4 +33,4 @@ jobs:
 
             - name: Publish update
               id: publish-update
-              run: turbo run publish-update --filter='[origin/${{ github.event.pull_request.head.ref }}...origin/main]'
+              run: turbo run publish-update --filter='[origin/main...origin/${{ github.event.pull_request.head.ref }}]'
