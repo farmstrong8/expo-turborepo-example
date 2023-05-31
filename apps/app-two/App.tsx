@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { Orange } from "../../packages/ui/Orange";
+import { Orange } from "@local/ui/Orange";
 
 export default function App() {
     return (
