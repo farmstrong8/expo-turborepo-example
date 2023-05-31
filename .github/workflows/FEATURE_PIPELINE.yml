@@ -1,0 +1,25 @@
+name: FEATURE-PIPELINE
+
+on:
+    pull_request:
+        types: ["opened", "reopened", "ready_for_review", "synchronize"]
+    workflow_dispatch:
+
+jobs:
+    update:
+        name: EAS Update
+        runs-on: ubuntu-latest
+        timeout-minutes: 60
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "16"
+
+            - name: Publish update
+              id: publish-update
+              run: turbo run publish-update --filter=[HEAD^1]
