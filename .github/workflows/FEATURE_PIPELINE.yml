@@ -31,4 +31,4 @@ jobs:
 
             - name: Publish update
               id: publish-update
-              run: turbo run publish-update --filter=[origin/main -- $(git branch --show-current)]
+              run: turbo run publish-update --filter=[origin/main -- HEAD]
