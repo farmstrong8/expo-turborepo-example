@@ -33,4 +33,4 @@ jobs:
 
             - name: Publish update
               id: publish-update
-              run: turbo run publish-update --filter='[${{ github.event.before }}...${{ github.event.after }}]'
+              run: turbo run publish-update --filter='[origin/main...${{ github.event.pull_request.head.ref }}]'
