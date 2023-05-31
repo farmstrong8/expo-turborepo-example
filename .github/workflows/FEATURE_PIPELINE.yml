@@ -33,4 +33,4 @@ jobs:
 
             - name: Publish update
               id: publish-update
-              run: turbo run publish-update --filter=[origin/main...HEAD]
+              run: turbo run publish-update
