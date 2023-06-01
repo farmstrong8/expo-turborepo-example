@@ -33,4 +33,5 @@ jobs:
 
             - name: Publish update
               id: publish-update
+              # Publish app one or app two if it or any of its dependencies changed in the last commit
               run: turbo run publish-update --filter=app-one...[HEAD^1] --filter=app-two...[HEAD^1]  --filter=!@local/ui
