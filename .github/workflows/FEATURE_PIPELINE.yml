@@ -14,8 +14,6 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
-              with:
-                  fetch-depth: 2
 
             - name: Setup Node
               uses: actions/setup-node@v2
@@ -24,7 +22,7 @@ jobs:
 
             - name: Restore cache
               id: cache-npm
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: node_modules
                   key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -34,17 +32,17 @@ jobs:
               if: steps.cache-npm.outputs.cache-hit != 'true'
               run: npm ci
 
-            - name: Turbo Cache
-              id: turbo-cache
-              uses: actions/cache@v2
-              with:
-                  path: .turbo
-                  key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
-                  restore-keys: |
-                      turbo-${{ github.job }}-${{ github.ref_name }}-
-
             - name: Install turbo
               run: npm install turbo --global
+
+            - name: Turbo Cache
+              id: turbo-cache
+              uses: actions/cache@v3
+              with:
+                  path: .turbo
+                  key: ${{ runner.os }}-turbo-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-turbo-
 
             - name: Publish update
               id: publish-update
