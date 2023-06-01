@@ -33,4 +33,4 @@ jobs:
 
             - name: Publish update
               id: publish-update
-              run: turbo run publish-update --filter=[HEAD^1] --filter=!@local/ui
+              run: turbo run publish-update --filter=app-one...[HEAD^1] --filter=app-two...[HEAD^1]  --filter=!@local/ui
