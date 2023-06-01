@@ -7,7 +7,7 @@ export default function App() {
     return (
         <View style={styles.container}>
             <Text>Open up App.tsx to start working on your app!</Text>
-            <Text>App One</Text>
+            <Text>App One (Updated)</Text>
             <Apple />
             <Orange />
             <StatusBar style="auto" />
