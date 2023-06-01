@@ -46,9 +46,6 @@ jobs:
             - name: Install turbo
               run: npm install turbo --global
 
-            - name: Log
-              run: ls -a
-
             - name: Publish update
               id: publish-update
               # Publish app one or app two if it or any of its dependencies changed in the last commit
