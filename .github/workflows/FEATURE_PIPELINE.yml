@@ -22,8 +22,26 @@ jobs:
               with:
                   node-version: "16"
 
+            - name: Restore cache
+              id: cache-npm
+              uses: actions/cache@v2
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: ${{ runner.os }}-npm-
+
             - name: Install dependencies
+              if: steps.cache-npm.outputs.cache-hit != 'true'
               run: npm ci
+
+            - name: Turbo Cache
+              id: turbo-cache
+              uses: actions/cache@v2
+              with:
+                  path: .turbo
+                  key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
+                  restore-keys: |
+                      turbo-${{ github.job }}-${{ github.ref_name }}-
 
             - name: Install turbo
               run: npm install turbo --global
@@ -34,4 +52,4 @@ jobs:
             - name: Publish update
               id: publish-update
               # Publish app one or app two if it or any of its dependencies changed in the last commit
-              run: turbo run publish-update --filter=app-one...[HEAD^1] --filter=app-two...[HEAD^1]  --filter=!@local/ui
+              run: turbo run publish-update --filter=app-one...[HEAD^1] --filter=app-two...[HEAD^1]  --filter=!@local/ui --cache-dir=.turbo
